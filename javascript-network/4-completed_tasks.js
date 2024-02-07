@@ -1,31 +1,28 @@
-#!/usr/bin/node
-
 const request = require('request');
 
-const url = process.argv[2];
+// Get the API URL from the command line arguments
+const apiUrl = process.argv[2];
 
-request.get(url, function (error, response, body) {
-  if (error) {
-    console.error(error.message);
-  } else {
-    const tasks = JSON.parse(body);
-    const completed = {};
-    for (const x of tasks) {
-      if (x.completed === true) {
-        if (x.userId in completed) {
-          completed[x.userId]++;
-        } else {
-          completed[x.userId] = 1;
-        }
-      }
+// Send a GET request to the API URL
+request.get(apiUrl, (error, response, body) => {
+    if (error) {
+        console.error(error);
+        return;
     }
-    console.log(completed);
-  }
+    // Parse the JSON response body
+    const todos = JSON.parse(body);
+    // Initialize an object to store the count of completed tasks for each user
+    const completedTasksByUser = {};
+    // Iterate over the todos to count completed tasks by user
+    todos.forEach(todo => {
+        if (todo.completed) {
+            if (completedTasksByUser[todo.userId]) {
+                completedTasksByUser[todo.userId]++;
+            } else {
+                completedTasksByUser[todo.userId] = 1;
+            }
+        }
+    });
+    // Print the completed tasks by user
+    console.log(completedTasksByUser);
 });
-
-
-// Write a script that computes the number of tasks completed by user id.
-
-// The first argument is the API URL: https://jsonplaceholder.typicode.com/todos
-// Only print users with completed task
-// You must use the module request

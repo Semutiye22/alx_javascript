@@ -1,17 +1,19 @@
-#!/usr/bin/node
-const request = require('request'); 
+const request = require('request');
 
-const movieID = process.argv[2]; 
+// Get the movie ID from the command line arguments
+const movieId = process.argv[2];
 
-const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieID}`;
+// Construct the URL
+const url = https://swapi-api.alx-tools.com/api/films/${movieId};
 
-request.get(apiUrl, (error, response, body) => {
-
+// Send a GET request to the URL
+request.get(url, (error, response, body) => {
     if (error) {
-        console.error('Error:', error.message);
-
-    } else {
-            const movieInfo = JSON.parse(body);
-            console.log(`${movieInfo.title}`);
+        console.error(error);
+        return;
     }
+    // Parse the JSON response body
+    const movie = JSON.parse(body);
+    // Display the title and episode number of the movie
+    console.log(`Correct output - episode ${movie.episode_id}: ${movie.title}`);
 });
