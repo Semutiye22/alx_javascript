@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1, h2 {
+      margin-bottom: 20px;
+    }
+
+    input, button {
+      margin-bottom: 10px;
+    }
+
+    #cookieContainer {
+      margin-top: 20px;
+    }
+
+    .welcome-message {
+      font-style: italic;
+      font-weight: normal;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cookie Management</h1>
+  <div id="loginForm" style="display: none;">
+    <h2>Login Form</h2>
+    <input type="text" id="firstname" placeholder="Enter your first name">
+    <input type="text" id="email" placeholder="Enter your email">
+    <button onclick="setCookies()">Log me in</button>
+  </div>
+  <div id="welcomeMessage"></div>
+  <button onclick="showWelcomeMessageOrForm()">Show Welcome Message or Form</button>
+  <div id="cookieContainer"></div>
+
+  <script src="src/index.js"></script>
+</body>
+</html>
